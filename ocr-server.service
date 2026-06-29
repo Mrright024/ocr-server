@@ -1,0 +1,17 @@
+[Unit]
+Description=OCR Server (ddddocr + FastAPI)
+After=network.target
+
+[Service]
+Type=simple
+User={{SERVICE_USER}}
+Group={{SERVICE_GROUP}}
+WorkingDirectory={{DEPLOY_DIR}}
+Environment=PATH={{DEPLOY_DIR}}/.venv/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart={{DEPLOY_DIR}}/.venv/bin/uvicorn main:app --host 127.0.0.1 --port 1224
+
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
