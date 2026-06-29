@@ -108,9 +108,12 @@ async def ocr_upload(file: UploadFile = File(...)):
 
 
 if __name__ == "__main__":
+    import argparse
     import uvicorn
 
-    host = os.environ.get("OCR_HOST", "127.0.0.1")
-    port = int(os.environ.get("OCR_PORT", "1224"))
+    parser = argparse.ArgumentParser(description="OCR Server")
+    parser.add_argument("--host", default=os.environ.get("OCR_HOST", "127.0.0.1"))
+    parser.add_argument("--port", type=int, default=int(os.environ.get("OCR_PORT", "1224")))
+    args = parser.parse_args()
 
-    uvicorn.run(app, host=host, port=port)
+    uvicorn.run(app, host=args.host, port=args.port)
