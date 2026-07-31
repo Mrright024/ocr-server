@@ -69,6 +69,8 @@ curl -X POST http://127.0.0.1:1224/ocr/upload -F "file=@captcha.png"
 {"success": true, "data": {"result": "8a3f", "length": 1186, "filename": "captcha.png"}}
 ```
 
+如果 OCR 结果是支持的算式（例如 `3+5`、`8×2` 或 `1+2=`），服务会计算后返回答案；普通验证码仍返回原始识别结果。
+
 ## 配置
 
 | 环境变量 | 默认值 | 说明 |
